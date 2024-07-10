@@ -1,0 +1,98 @@
+body {
+  background: #0f141c;
+}
+
+/* ---------------------------------- Chat ---------------------------------- */
+
+#chat {
+  height: calc(100vh - 65.7px);
+  overflow-y: scroll;
+  display: flex;
+}
+#chat::-webkit-scrollbar {
+  width: 0;
+}
+#chat #messagesContainer {
+  padding: 25px 13px 10px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+#chat #messagesContainer .messageContainer {
+  display: flex;
+  position: relative;
+}
+#chat #messagesContainer .messageContainer .messageContent {
+  padding: 8px 10px;
+  margin-top: 15px;
+  background: #282a38;
+  border-radius: 20px;
+  color: #d9dbe7;
+  font-size: 0.95rem;
+}
+#chat #messagesContainer .messageContainer .messageContent p {
+  max-width: calc(100vw - 46px);
+  word-wrap: break-word;
+  margin-bottom: 2px;
+}
+#chat #messagesContainer .messageContainer .authorPseudo {
+  position: absolute;
+  top: -3px;
+  left: 7px;
+  color: #96979e;
+  font-size: 0.9rem;
+}
+#chat #messagesContainer .mineMessage {
+  display: flex;
+  justify-content: flex-end;
+}
+#chat #messagesContainer .mineMessage .messageContent {
+  margin: 0;
+  color: #e3e5f1;
+  background: #8d93b1;
+}
+#chat #messagesContainer .mineMessage .authorPseudo {
+  display: none;
+}
+
+/* ------------------------------ Message Form ------------------------------ */
+
+#messageForm {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 100px;
+  background: #242737;
+  width: calc(100% - 20px);
+}
+#messageForm input {
+  border: none;
+  outline: none;
+  padding: 14px 16px;
+  border-radius: 100px;
+  width: calc(100% - 70px);
+  background: #242737;
+  color: #aeb2c6;
+}
+#messageForm input::placeholder {
+  color: #737582;
+}
+#messageForm button {
+  position: absolute;
+  right: 5px;
+  top: 50%;
+  transform: translateY(-50%);
+  border: none;
+  outline: none;
+  width: 38px;
+  height: 38px;
+  border-radius: 100px;
+  background: #858aa5;
+  transition: 0.2s;
+  cursor: pointer;
+}
+#messageForm button:active {
+  background: #a2a8ca;
+}

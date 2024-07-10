@@ -1,0 +1,61 @@
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: #0d1522;
+}
+
+/* --------------------------------- Header --------------------------------- */
+
+header {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding-bottom: 40px;
+}
+header h1 {
+  font-size: 2rem;
+  color: rgb(244, 244, 244);
+  font-weight: 600;
+  text-shadow: 1px 1px 1px rgba(92, 40, 223, 0.4);
+}
+
+/* ---------------------------------- Main ---------------------------------- */
+
+main, main form {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  position: relative;
+}
+main form input {
+  border: none;
+  outline: none;
+  padding: 10px 16px;
+  margin-bottom: 8px;
+  border-radius: 6px;
+}
+main form button {
+  cursor: pointer;
+  border: none;
+  outline: none;
+  padding: 9px 16px;
+  margin: 15px 0 10px;
+  border-radius: 6px;
+  background: #b3bae1;
+  transition: 0.2s;
+}
+main form button:active {
+  background: #a6b3ff;
+}
+main a {
+  color: #b3bae1;
+  font-size: 0.9rem;
+}
+main #errorForm {
+  position: absolute;
+  bottom: -30px;
+  color: rgb(202, 86, 68);
+  font-size: 0.9rem;
+}
