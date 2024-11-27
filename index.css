@@ -13,21 +13,37 @@ body {
   width: 0;
 }
 #chat #messagesContainer {
-  padding: 25px 13px 10px;
+  padding: 13px 13px 10px;
   width: 100%;
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
 #chat #messagesContainer .messageContainer {
-  display: flex;
-  position: relative;
+  margin-top: 5px;
 }
+
+
+#chat #messagesContainer .messageContainer .infoMessageContainer {
+    display: flex;
+    align-items: flex-end;
+    padding: 0 0 6px 9px;
+    gap: 10px;
+}
+#chat #messagesContainer .messageContainer .authorPseudo {
+  color: #bdbec8;
+  font-size: 0.95rem;
+}
+#chat #messagesContainer .messageContainer .date {
+  color: #96979e;
+  font-size: 0.75rem;
+}
+
+
 #chat #messagesContainer .messageContainer .messageContent {
   padding: 8px 10px;
-  margin-top: 15px;
   background: #282a38;
-  border-radius: 20px;
+  border-radius: 7px;
   color: #d9dbe7;
   font-size: 0.95rem;
 }
@@ -36,24 +52,9 @@ body {
   word-wrap: break-word;
   margin-bottom: 2px;
 }
-#chat #messagesContainer .messageContainer .authorPseudo {
-  position: absolute;
-  top: -3px;
-  left: 7px;
-  color: #96979e;
-  font-size: 0.9rem;
-}
-#chat #messagesContainer .mineMessage {
-  display: flex;
-  justify-content: flex-end;
-}
 #chat #messagesContainer .mineMessage .messageContent {
-  margin: 0;
   color: #e3e5f1;
   background: #8d93b1;
-}
-#chat #messagesContainer .mineMessage .authorPseudo {
-  display: none;
 }
 
 /* ------------------------------ Message Form ------------------------------ */
@@ -63,21 +64,27 @@ body {
   bottom: 10px;
   left: 50%;
   transform: translateX(-50%);
-  border-radius: 100px;
+  border-radius: 7px;
   background: #242737;
-  width: calc(100% - 20px);
+  width: calc(100% - 46px);
+  padding: 10px 13px;
 }
-#messageForm input {
+#messageForm textarea {
   border: none;
   outline: none;
-  padding: 14px 16px;
-  border-radius: 100px;
-  width: calc(100% - 70px);
+  padding: 0;
+  width: calc(100% - 55px);
+  height: 25px;
+  font-size: 1rem;
   background: #242737;
   color: #aeb2c6;
+  resize: none;
 }
-#messageForm input::placeholder {
+#messageForm textarea::placeholder {
   color: #737582;
+}
+#messageForm textarea::-webkit-scrollbar {
+  width: 0;
 }
 #messageForm button {
   position: absolute;
@@ -86,9 +93,9 @@ body {
   transform: translateY(-50%);
   border: none;
   outline: none;
-  width: 38px;
-  height: 38px;
-  border-radius: 100px;
+  width: 55px;
+  height: calc(100% - 10px);
+  border-radius: 8px;
   background: #858aa5;
   transition: 0.2s;
   cursor: pointer;

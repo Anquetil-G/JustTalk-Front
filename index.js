@@ -1,8 +1,17 @@
 const ws = new WebSocket('wss://justtalk-7nvr.onrender.com');
 let messagesData = [];
 
-const createMessage = (messageId, authorId, authorPseudo, message) => {
-  if (localStorage.getItem("needConnection") === "false") {    
+const createMessage = (messageId, authorId, authorPseudo, message, createdAt) => {
+  if (localStorage.getItem("needConnection") === "false") {
+    const date = new Date(createdAt);
+    const options = { 
+      year: 'numeric', 
+      month: 'long', 
+      day: 'numeric', 
+      hour: 'numeric', 
+      minute: 'numeric',
+    };
+    const formattedDate = date.toLocaleDateString('fr-FR', options);
     const div = document.createElement(`div`);
     div.id = messageId;
     if (authorId === localStorage.getItem("_id")) {
@@ -10,8 +19,11 @@ const createMessage = (messageId, authorId, authorPseudo, message) => {
     };
     div.classList.add("messageContainer");
     div.innerHTML = `
-      <div class="authorPseudo"><p>${authorPseudo}</p></div>
-      <div class="messageContent"><p>${message}</p></div>
+      <div class="infoMessageContainer">      
+        <div class="authorPseudo"><p>${authorPseudo}</p></div>
+        <div class="date"><p>${formattedDate}</p></div>
+      </div>
+      <div class="messageContent"><p>${message.replace(/\n/g, '<br>')}</p></div>
     `;
     document.getElementById('messagesContainer').appendChild(div);
     chat.scrollTop = chat.scrollHeight;
@@ -22,9 +34,9 @@ const fetchMessages = () => {
   fetch("https://justtalk-7nvr.onrender.com/message")
     .then(res => res.json())
     .then(data => {
-      messagesData = data;
+      messagesData = data;      
       data.forEach(message => {
-        createMessage(message._id, message.author, message.authorPseudo, message.message);
+        createMessage(message._id, message.author, message.authorPseudo, message.message, message.createdAt);        
       });
     }).then(chat.scrollTop = chat.scrollHeight);
 };
@@ -32,7 +44,7 @@ const fetchMessages = () => {
 ws.onmessage = function(event) {
   const messageData = JSON.parse(event.data);
   messagesData.push(messageData);
-  createMessage(messageData._id, messageData.author, messageData.authorPseudo, messageData.message);
+  createMessage(messageData._id, messageData.author, messageData.authorPseudo, messageData.message, messageData.createdAt);
 };
 
 messageForm.addEventListener('submit', (e) => {
@@ -44,6 +56,7 @@ messageForm.addEventListener('submit', (e) => {
     
     ws.send(JSON.stringify({ author, message, authorPseudo }));
     messageInput.value = "";
+    messageInput.style.height = '25px';
   };
 });
 
@@ -70,4 +83,10 @@ window.addEventListener("load", () => {
     fetchMessages();
     checkAccount();
   }
+});
+
+
+messageInput.addEventListener('input', function() {
+  this.style.height = '25px';
+  this.style.height = this.scrollHeight + 'px';
 });
